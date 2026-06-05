@@ -9,7 +9,7 @@ app.use("/test", (req, res) => {
 });
 
 app.use("/hello", (req, res) => {
-  res.send("Hello hello hello hello hello!!!!");
+  res.send("Hello hello hello hello hello from helol page !!!!");
 });
 
 app.use("/", (req, res) => {
