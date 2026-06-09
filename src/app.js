@@ -4,35 +4,22 @@ const { adminAuth, userAuth } = require("./middlewares/auth");
 
 const app = express();
 
-// app.use("/admin", (req, res, next) => {
-//   console.log("admin authorization in the middleware");
-//   const token = "xyzz";
+app.get("/getUserData", (req, res) => {
+  try {
+    //logic for db  call and get user data
 
-//   const isUserAuthorized = token === "xyz";
+    throw new Error("random error happens");
 
-//   if (!isUserAuthorized) {
-//     res.status(401).send("Unauthorized request");
-//   } else {
-//     next();
-//   }
-// });
-
-app.use("/admin", adminAuth);
-
-app.post("/user/login", (req, res) => {
-  res.send("User logged in sucessfully!");
+    res.send("User data sent");
+  } catch (err) {
+    res.status(500).send("some error contact support team");
+  }
 });
 
-app.get("/user/data", userAuth, (req, res) => {
-  res.send("User data sent");
-});
-
-app.get("/admin/getAllData", (req, res) => {
-  res.send("All data submitted");
-});
-
-app.get("/admin/deleteData", (req, res) => {
-  res.send("One Data deleted");
+app.use("/", (err, req, res, next) => {
+  if (err) {
+    res.status(500).send("something went wrong");
+  }
 });
 
 app.listen(7777, () => {
